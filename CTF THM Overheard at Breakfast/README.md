@@ -1,8 +1,15 @@
+<div align="center">
+  
 # 🕵️‍♂️ CTF Writeup: Overheard at Breakfast
 
+</div>
+<div align="center">
+  
 ![Status](https://img.shields.io/badge/status-concluído-brightgreen)
 ![Plataforma](https://img.shields.io/badge/plataforma-TryHackMe-red)
 ![Área](https://img.shields.io/badge/área-OSINT-blue)
+
+</div>
 
 Documentação da resolução do CTF **Overheard at Breakfast** (TryHackMe). Este laboratório foca inteiramente em **OSINT (Open-Source Intelligence)** e análise de vazamento de informações em comunicações aparentemente inofensivas.
 
