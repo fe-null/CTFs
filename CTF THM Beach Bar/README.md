@@ -28,8 +28,7 @@ Este writeup ilustra a cadeia de ataque (Kill Chain) executada para comprometer 
 
 ## 🗺️ Fluxograma
 
-![Fluxograma de Exploração - Beach Bar](Beach%20Bar.jpg)
-*(Mapa mental criado durante o CTF ilustrando a ramificação do ataque)*
+<img width="8530" height="5106" alt="Image" src="https://github.com/user-attachments/assets/505b687b-f92d-4b82-b523-bf75b4a4350c" />
 
 ---
 
