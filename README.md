@@ -37,6 +37,7 @@ Abaixo estão os laboratórios práticos e CTFs documentados. Clique no link par
 | Status | Máquina / CTF | Plataforma | Foco Técnico | Link |
 | :---: | :--- | :--- | :--- | :---: |
 | ✅ | **Beach Bar** | TryHackMe | Enumeração Web, RCE via YAML, PrivEsc em Linux | [Acessar](https://github.com/fe-null/CTFs/tree/main/CTF%20THM%20Beach%20Bar) |
+| ✅ | **Overheard at Breakfast** | TryHackMe | OSINT, Correlação de Dados, Decodificação (Base64) | [Acessar](https://github.com/fe-null/CTFs/tree/main/CTF%20THM%20Overheard%20at%20Breakfast) |
 | 🚧 | **Próximo CTF** | TryHackMe | - | - |
 
 ---
