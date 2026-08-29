@@ -18,8 +18,7 @@ No contexto de cibersegurança e SOC, o OSINT é crucial na fase de reconhecimen
 
 ## 🗺️ Fluxograma da Investigação
 
-![Fluxograma da Investigação - Overheard at Breakfast](Overheard%20at%20Breakfast.jpg)
-*(Mapa mental criado no Obsidian ilustrando a trilha de migalhas deixada pelo alvo)*
+<img width="2590" height="1114" alt="Image" src="https://github.com/user-attachments/assets/f1f5e098-ae89-4c72-8898-cb00f3ff8799" />
 
 ---
 
