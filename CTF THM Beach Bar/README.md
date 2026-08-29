@@ -1,8 +1,14 @@
-# 🏖️ CTF Writeup: Beach Bar
+<div align="center">
 
+# 🏖️ CTF Writeup: Beach Bar
+</div>
+
+<div align="center">
+  
 ![Status](https://img.shields.io/badge/status-concluído-brightgreen)
 ![Plataforma](https://img.shields.io/badge/plataforma-TryHackMe-red)
 ![Área](https://img.shields.io/badge/área-Pentest-blue)
+</div>
 
 Documentação do fluxo de exploração do CTF **Beach Bar** da plataforma **TryHackMe**. Este projeto detalha o caminho de invasão desde o reconhecimento inicial até o comprometimento total do servidor (Root), com foco na exploração de vulnerabilidades web e escalonamento de privilégios em ambiente Linux.
 
