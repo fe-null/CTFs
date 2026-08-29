@@ -27,16 +27,16 @@ No contexto de cibersegurança e SOC, o OSINT é crucial na fase de reconhecimen
 O diagrama acima detalha a seguinte progressão investigativa:
 
 ### 1️⃣ Análise da Comunicação Interceptada
-A investigação começou analisando um log de chat[cite: 1]. Na conversa, o alvo (Lambo) menciona casualmente que abandonou as redes sociais, mas relembra o uso de uma ferramenta gratuita que vinculava perfis e começava com a letra **"G"**[cite: 1]. Junto a isso, o endereço de e-mail do alvo foi identificado: `lambobytelotushotel@gmail.com`[cite: 1].
+A investigação começou analisando um log de chat. Na conversa, o alvo (Lambo) menciona casualmente que abandonou as redes sociais, mas relembra o uso de uma ferramenta gratuita que vinculava perfis e começava com a letra **"G"**. Junto a isso, o endereço de e-mail do alvo foi identificado: `lambobytelotushotel@gmail.com`.
 
 ### 2️⃣ Correlação de Plataforma (Gravatar)
-Cruzando a dica de "ferramenta de perfil com G" e o endereço de e-mail, foi possível deduzir que o alvo estava se referindo ao **Gravatar** (Globally Recognized Avatar)[cite: 1] — um serviço massivamente utilizado na web que atrela imagens de perfil e descrições a hashes de e-mail.
+Cruzando a dica de "ferramenta de perfil com G" e o endereço de e-mail, foi possível deduzir que o alvo estava se referindo ao **Gravatar** (Globally Recognized Avatar) — um serviço massivamente utilizado na web que atrela imagens de perfil e descrições a hashes de e-mail.
 
 ### 3️⃣ Enumeração de Perfil
-Utilizando ferramentas de busca focadas no Gravatar com o e-mail descoberto, o perfil público de "Lambo" foi localizado[cite: 1]. Apesar de o alvo achar que havia apagado seus rastros digitais, o perfil antigo continuava ativo na plataforma[cite: 1].
+Utilizando ferramentas de busca focadas no Gravatar com o e-mail descoberto, o perfil público de "Lambo" foi localizado. Apesar de o alvo achar que havia apagado seus rastros digitais, o perfil antigo continuava ativo na plataforma.
 
 ### 4️⃣ Extração e Decodificação de Dados
-Na descrição (bio) do perfil do Gravatar, o alvo deixou uma mensagem irônica sobre "hashes seguirem você por lugares inesperados", acompanhada de uma string codificada: `VEHNe1MzY3J1VF9Qcm9maWwzX0g0c19iMzNuX0lkZW50aWZpZWR9`[cite: 1].
+Na descrição (bio) do perfil do Gravatar, o alvo deixou uma mensagem irônica sobre "hashes seguirem você por lugares inesperados", acompanhada de uma string codificada: `VEHNe1MzY3J1VF9Qcm9maWwzX0g0c19iMzNuX0lkZW50aWZpZWR9`.
 
 Identificando o padrão como **Base64**, o texto foi copiado para um arquivo local (`email`) via terminal (`nano`) e decodificado utilizando o comando:
 ```bash
