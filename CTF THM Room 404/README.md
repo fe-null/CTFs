@@ -16,10 +16,7 @@ Documentação da resolução do CTF **Room 404** da plataforma TryHackMe. Este 
 
 ---
 
-## 🗺️ Fluxograma da Exploração
-
-![Fluxograma de Exploração - Room 404](Room%20404.jpg)
-*(Mapa mental estruturando o fluxo de ataque)*
+<img width="2856" height="1074" alt="Image" src="https://github.com/user-attachments/assets/bc2764ff-3038-4ff8-bd87-872c188103f8" />
 
 ---
 
