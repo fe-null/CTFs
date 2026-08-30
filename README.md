@@ -38,7 +38,7 @@ Abaixo estão os laboratórios práticos e CTFs documentados. Clique no link par
 | :---: | :--- | :--- | :--- | :---: |
 | ✅ | **Beach Bar** | TryHackMe | Enumeração Web, RCE via YAML, PrivEsc em Linux | [Acessar](https://github.com/fe-null/CTFs/tree/main/CTF%20THM%20Beach%20Bar) |
 | ✅ | **Overheard at Breakfast** | TryHackMe | OSINT, Correlação de Dados, Decodificação (Base64) | [Acessar](https://github.com/fe-null/CTFs/tree/main/CTF%20THM%20Overheard%20at%20Breakfast) |
-| ✅ | **Room 404** | TryHackMe | Source Code Disclosure, Git Dumper, Enumeração Web | [Acessar](https://github.com/fe-null/CTFs/tree/main/Room%20404) |
+| ✅ | **Room 404** | TryHackMe | Source Code Disclosure, Git Dumper, Enumeração Web | [Acessar](https://github.com/fe-null/CTFs/blob/main/CTF%20THM%20Room%20404/README.md) |
 | 🚧 | **Próximo CTF** | TryHackMe | - | - |
 
 ---
