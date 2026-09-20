@@ -1,78 +1,104 @@
 <div align="center">
 
-# 🏖️ CTF Writeup: Beach Bar
-</div>
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=45&pause=1000&color=FF0000&center=true&vCenter=true&width=800&height=120&lines=CTF+Writeup%3A+Beach+Bar;Web+Exploitation+%26+RCE;Insecure+Deserialization;Privilege+Escalation+(Root)" alt="Typing SVG" />
+</a>
 
-<div align="center">
-  
-![Status](https://img.shields.io/badge/status-concluído-brightgreen)
-![Plataforma](https://img.shields.io/badge/plataforma-TryHackMe-red)
-![Área](https://img.shields.io/badge/área-Pentest-blue)
-</div>
-
-Documentação do fluxo de exploração do CTF **Beach Bar** da plataforma **TryHackMe**. Este projeto detalha o caminho de invasão desde o reconhecimento inicial até o comprometimento total do servidor (Root), com foco na exploração de vulnerabilidades web e escalonamento de privilégios em ambiente Linux.
-
-> ⚠️ **Aviso**: As técnicas demonstradas aqui foram aplicadas em um ambiente de laboratório isolado e legal. A utilização dessas técnicas em alvos reais sem autorização é crime.
+<p align="center">
+  <img src="https://img.shields.io/badge/PLATAFORMA-TRYHACKME-E53935?style=for-the-badge&logo=tryhackme&logoColor=white" alt="Plataforma">
+  <img src="https://img.shields.io/badge/FOCO-PENTESTING_%7C_WEB-1E88E5?style=for-the-badge" alt="Foco">
+  <img src="https://img.shields.io/badge/STATUS-CONCLUÍDO-00E676?style=for-the-badge" alt="Status">
+</p>
 
 ---
 
-## 📑 Sumário
+*Documentação tática: Exploração de processamento inseguro de arquivos, acesso inicial (Reverse Shell) e escalonamento para Root.*
 
-- [Sobre o projeto](#-sobre-o-projeto)
-- [Fluxograma](#-fluxograma)
-- [Ferramentas utilizadas](#-ferramentas-utilizadas)
-- [Fluxo do ataque](#-fluxo-do-ataque)
-- [Aprendizados](#-aprendizados)
+</div>
 
----
+<br>
 
 ## 📖 Sobre o projeto
 
-Este writeup ilustra a cadeia de ataque (Kill Chain) executada para comprometer a máquina alvo. A documentação visualiza a progressão do acesso: mapeamento da superfície de ataque web, bypass de autenticação, exploração de vulnerabilidade no processamento de arquivos (playlists em formato YAML) e, finalmente, a elevação de privilégios no sistema operacional.
+Documentação da cadeia de ataque (*Kill Chain*) executada para comprometer a máquina **Beach Bar** da plataforma TryHackMe. O foco desta investigação detalha o caminho de invasão desde o mapeamento da superfície de ataque web e quebra de autenticação, passando pela exploração de vulnerabilidade crítica no processamento de arquivos YAML (RCE), até culminar no escalonamento de privilégios total no ambiente Linux (Root).
 
 ---
 
-## 🗺️ Fluxograma
-
-<img width="8530" height="5106" alt="Image" src="https://github.com/user-attachments/assets/505b687b-f92d-4b82-b523-bf75b4a4350c" />
+<img width="100%" alt="Fluxograma da Investigação" src="https://github.com/user-attachments/assets/505b687b-f92d-4b82-b523-bf75b4a4350c" />
 
 ---
 
-## 🛠️ Ferramentas utilizadas
+## 🛠️ Ferramentas Utilizadas
+
+A resolução deste laboratório demonstra proficiência na utilização das seguintes ferramentas padrão da indústria:
 
 | Ferramenta | Função |
 |---|---|
-| **Nmap** | Reconhecimento de rede e varredura de portas/serviços HTTP expostos |
-| **FFuF / Gobuster** | Enumeração de diretórios e descoberta de rotas web (ex: login, admin) |
-| **Metasploit / Netcat** | Estabelecimento de reverse shell via VPN e controle de payload |
-| **LinPEAS** | Enumeração automatizada para escalonamento de privilégios no Linux |
+| **Nmap** | Reconhecimento agressivo de rede e varredura de portas/serviços HTTP expostos na infraestrutura. |
+| **FFuF / Gobuster** | *Fuzzing* e enumeração de diretórios para descoberta de rotas ocultas e pontos de entrada (ex: página de *login* administrativa). |
+| **Metasploit / Netcat** | Estabelecimento e estabilização de *Reverse Shells* via VPN, garantindo controle persistente sobre o alvo. |
+| **LinPEAS** | Script de enumeração automatizada de *pós-exploração* para identificar vetores de escalonamento de privilégios no Linux. |
 
 ---
 
-## 🔄 Fluxo do ataque
+## 🔄 Fluxo do Ataque (Kill Chain)
 
-O diagrama documenta as seguintes etapas, na ordem em que ocorrem:
+O diagrama acima documenta a seguinte progressão tática:
 
-### 1️⃣ Reconhecimento (Recon)
-A varredura inicial com Nmap revelou o serviço HTTP rodando a aplicação web. A partir daí, foi feita a enumeração de diretórios bruteforce para descobrir a estrutura do site e os pontos de entrada, como a página de login.
+### 1️⃣ Reconhecimento & Enumeração (Recon)
+A varredura inicial revelou o serviço HTTP rodando a aplicação web. A partir daí, foi executada uma técnica de *Directory Bruteforce* para mapear a estrutura do site, revelando áreas restritas do sistema, incluindo o painel de autenticação administrativo.
 
-### 2️⃣ Exploração Web & Autenticação
-Com a página de login identificada nas rotas web, o ataque focou em obter acesso à área autenticada. Isso envolveu técnicas para contornar ou adivinhar as credenciais de acesso para entrar no painel de administração da aplicação.
+### 2️⃣ Exploração Web & Bypass de Autenticação
+Com a página de *login* identificada, o vetor de ataque focou-se em obter acesso à área autenticada. Através do contorno das proteções de acesso e da quebra das credenciais da aplicação, foi possível assumir o controlo sobre o painel de gestão administrativa.
 
-### 3️⃣ Vulnerabilidade em Manipulação de Arquivos
-Dentro do painel administrativo, foi identificada uma funcionalidade de gerenciamento de dados envolvendo arquivos YAML (como o `playlist.yml` visto no fluxo de execução). O sistema processava o arquivo de forma insegura, abrindo brechas para injeção de comandos.
+### 3️⃣ Processamento Inseguro de Arquivos (Exploração YAML)
+Dentro do painel administrativo, o sistema permitia a manipulação de configurações baseadas em ficheiros estruturados (`playlist.yml`). O sistema realizava o processamento (*parsing*) deste ficheiro de forma insegura, criando uma brecha crítica de injeção.
 
-### 4️⃣ Acesso Inicial (Reverse Shell)
-Explorando o processamento do arquivo de playlist, foi possível forçar a aplicação a executar código remoto (RCE). Um payload foi disparado, estabelecendo uma conexão reversa para a máquina atacante. Isso garantiu acesso ao terminal do servidor alvo como um usuário de baixo privilégio.
+### 4️⃣ Acesso Inicial (RCE & Reverse Shell)
+Explorando a falha de manipulação do ficheiro YAML (potencial falha de *Insecure Deserialization*), foi possível forçar a aplicação web a executar comandos arbitrários no servidor (*Remote Code Execution* - RCE). O *payload* injetado forçou uma conexão reversa de volta para a máquina atacante, garantindo acesso direto ao terminal do servidor como um utilizador de baixos privilégios (ex: `www-data`).
 
 ### 5️⃣ Escalonamento de Privilégios (Root)
-Com o acesso shell estabilizado, iniciou-se a fase de pós-exploração. A enumeração interna do Linux buscou falhas de configuração (como binários com SUID, regras permissivas de `sudo` ou tarefas Cron). A exploração dessas configurações permitiu elevar o nível de acesso até o usuário `root`, assumindo controle total da máquina.
+Com a ligação inicial estabilizada, a fase de Pós-Exploração iniciou-se com uma intensa enumeração interna do sistema Linux (utilizando o *LinPEAS*). A exploração focou-se na identificação de configurações incorretas — como binários com SUID, tarefas *Cron* ou regras permissivas no `sudo`. A exploração eficaz deste vetor permitiu a elevação lateral e vertical até assumir a identidade do utilizador `root`, resultando no comprometimento total da infraestrutura.
 
 ---
 
-## 💡 Aprendizados
+## 🚨 Principais Impactos (Business Impact)
 
-- Metodologia eficiente de enumeração web e descoberta de diretórios administrativos.
-- Riscos críticos no processamento de arquivos serializados ou estruturados (como YAML) quando o input do usuário não é devidamente sanitizado.
-- Uso de ferramentas em ambiente laboratorial para obter e estabilizar shells reversos.
-- Técnicas avançadas de enumeração local em sistemas Linux para encontrar rotas de escalonamento de privilégios.
+Vulnerabilidades que combinam falhas web lógicas e de infraestrutura geram um risco gravíssimo para as operações empresariais. Os cenários documentados refletem os seguintes impactos:
+
+- **Comprometimento Total do Servidor:** A transição de um simples utilizador do servidor *web* para `root` significa que o atacante tem permissão para ler, modificar, destruir dados em disco, ou infetar a máquina com *Ransomware*, sem qualquer limitação do sistema operativo.
+- **Remote Code Execution (RCE) Silencioso:** O processamento inseguro de dados formatados (como o YAML) é letal. Permite que um atacante execute instruções diretamente no núcleo operacional do servidor sem necessidade de escrever binários no disco, burlando vários antivírus e firewalls.
+- **Quebra de Confidencialidade (Painel Admin):** Políticas de acesso e senhas fracas expõem o "coração" da aplicação. O comprometimento administrativo dá aos atacantes acesso direto à base de dados de clientes, transações e lógicas de negócio cruciais.
+
+---
+
+## 🛡️ Recomendações de Mitigação e Boas Práticas (OpSec)
+
+Para garantir a resiliência desta infraestrutura (*Hardening*), recomendo as seguintes intervenções técnicas:
+
+1. **Validação Rigorosa de Arquivos (Evitar Desserialização Insegura):**
+   Garantir que as bibliotecas que processam ficheiros YAML (ou XML/JSON) estão configuradas para o modo *Safe Load*, impedindo-as de executar *scripts* contidos dentro da estrutura formatada do ficheiro.
+
+2. **Fortificação de Interfaces Administrativas:**
+   Implementar autenticação multifator (MFA/2FA) obrigatória para todas as áreas sensíveis da aplicação. Utilizar mecanismos de *Rate-Limiting* para impedir a enumeração de diretórios e ataques de força bruta (*Brute Force*).
+
+3. **Princípio do Menor Privilégio (*PoLP*) na Infraestrutura:**
+   Auditar os privilégios do utilizador de serviço da aplicação *web* (`www-data`). Este utilizador jamais deverá ter permissões para executar binários sensíveis no sistema como *root* (revogar configurações de SUID incorretas e limpar o ficheiro `/etc/sudoers`).
+
+---
+
+## ⚖️ Aviso Ético e Legal (Disclaimer)
+
+> [!WARNING]
+> **Operações Estritamente Educacionais**<br>Todos os testes de intrusão, técnicas de exploração e ferramentas documentados neste repositório foram executados de forma **ética**, em ambientes de laboratório isolados e legalmente autorizados (como os laboratórios da plataforma TryHackMe). 
+> 
+> O conteúdo aqui partilhado tem fins estritamente educacionais, focados na defesa cibernética e no reforço da segurança de infraestruturas. A utilização desautorizada destas técnicas em redes corporativas, servidores públicos ou sistemas privados sem o consentimento explícito e documentado (*Rules of Engagement*) é um crime cibernético.
+
+<br>
+
+<div align="center">
+  <p><code>Desenvolvido com dedicação por Felipe Augusto.</code></p>
+  <a href="https://github.com/fe-null">
+    <img src="https://skillicons.dev/icons?i=github,linux,kali,bash,python" alt="Tech Stack" />
+  </a>
+</div>
