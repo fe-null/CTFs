@@ -33,7 +33,7 @@ Diferente de auditorias puramente teóricas, o Pentest Web envolve a exploraçã
 ---
 
 <!-- Substitua o link abaixo pela imagem do seu canvas/diagrama do Obsidian hospedada no GitHub -->
-[<img width="100%" alt="Fluxograma do Pentest Web" src="https://github.com/user-attachments/assets/lab-flow.png" />](https://github.com/fe-null/CTFs/issues/6#issue-6148895757)
+<img width="12558" height="5042" alt="Image" src="https://github.com/user-attachments/assets/34519d0a-855e-43c3-a373-e5fb2b643405" />
 
 ---
 
