@@ -38,6 +38,7 @@ O objetivo primário deste portefólio é documentar a evolução contínua das 
 | ✔️ | **[Beach Bar](./CTF%20THM%20Beach%20Bar)** | TryHackMe | Web Exploitation | [ 📄 Ler Relatório ](./CTF%20THM%20Beach%20Bar) |
 | ✔️ | **[Overheard at Breakfast](./CTF%20THM%20Overheard%20at%20Breakfast)** | TryHackMe | OSINT & Investigação | [ 📄 Ler Relatório ](./CTF%20THM%20Overheard%20at%20Breakfast) |
 | ✔️ | **[Room 404](./CTF%20THM%20Room%20404)** | TryHackMe | Source Code Leak (`.git`) | [ 📄 Ler Relatório ](./CTF%20THM%20Room%20404) |
+| ✔️ | **[Lab Pentest Web](./CTF%20Udemy%20Lab)** | Udemy Lab | Web Pentesting & PrivEsc | [ 📄 Ler Relatório ](./CTF%20Udemy%20Lab) |
 
 </div>
 
